@@ -1,3 +1,4 @@
+const mongoose = require('mongoose')
 const graphql = require('graphql')
 const {
   GraphQLObjectType,
@@ -5,6 +6,7 @@ const {
   GraphQLID,
   GraphQLList
 } = graphql
+const Question = mongoose.model('question')
 
 const QuestionType = new GraphQLObjectType({
   name: 'QuestionType',
