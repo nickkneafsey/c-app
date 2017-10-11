@@ -1,5 +1,5 @@
 const express = require('express')
-const models = require('./models')
+const models = require('./models') // This line is needed even though standard complains
 const expressGraphQL = require('express-graphql')
 const mongoose = require('mongoose')
 const schema = require('./schema/schema')
@@ -10,12 +10,10 @@ const MONGO_URI = require('./../config')
 const app = express()
 
 // Mongo stuff
-if (!MONGO_URI) {
-  throw new Error('You must provide a MongoLab URI')
-}
+if (!MONGO_URI) { throw new Error('No mlab uri') }
 
 mongoose.Promise = global.Promise
-mongoose.connect(MONGO_URI)
+mongoose.connect(MONGO_URI, { server: { reconnectTries: 3 } }) // Number.MAX_VALUE will continuously retry
 mongoose.connection
     .once('open', () => console.log('Connected to MongoLab instance.'))
     .on('error', error => console.log('Error connecting to MongoLab:', error))

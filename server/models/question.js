@@ -2,25 +2,29 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const QuestionSchema = new Schema({
-  question: {
-    type: Schema.Types.ObjectId,
-    ref: 'question'
-  },
   answers: { type: Array, default: [] },
   text: { type: String, default: '' },
-  correctAnswers: { type: Array, default: [] }
+  correctAnswers: { type: Array, default: [] },
+  developerAssociate: { type: Boolean, default: true },
+  solutionsArchitectAssociate: { type: Boolean, default: true },
+  sysOpsAssociate: { type: Boolean, default: true },
+  service: { type: String }
 })
 
-QuestionSchema.statics.addQuestion = function({ text, correctAnswers, answers }) {
+QuestionSchema.statics.addQuestion = function ({ text, correctAnswers, answers, service, developerAssociate, solutionsArchitectAssociate, sysOpsAssociate }) {
   const Question = mongoose.model('question')
-  // Probably handle errors here eventually
-  const question = new Question({ text, correctAnswers, answers })
 
-  return Promise.all([question.save()])
-    .then(([question]) => question)
+  const question = new Question({
+    text,
+    correctAnswers,
+    answers,
+    service,
+    developerAssociate,
+    solutionsArchitectAssociate,
+    sysOpsAssociate
+  })
 
-  // return question.save()
-  // return Question.create({ text, correctAnswers, answers })
+  return question.save()
 }
 
 mongoose.model('question', QuestionSchema)

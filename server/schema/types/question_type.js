@@ -1,12 +1,12 @@
-const mongoose = require('mongoose')
 const graphql = require('graphql')
+const ServiceType = require('./service_type')
 const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLID,
-  GraphQLList
+  GraphQLList,
+  GraphQLBoolean
 } = graphql
-const Question = mongoose.model('question')
 
 const QuestionType = new GraphQLObjectType({
   name: 'QuestionType',
@@ -14,7 +14,11 @@ const QuestionType = new GraphQLObjectType({
     id: { type: GraphQLID },
     text: { type: GraphQLString },
     answers: { type: new GraphQLList(GraphQLString) },
-    correctAnswers: { type: new GraphQLList(GraphQLString) }
+    correctAnswers: { type: new GraphQLList(GraphQLString) },
+    developerAssociate: { type: GraphQLBoolean },
+    solutionsArchitectAssociate: { type: GraphQLBoolean },
+    sysOpsAssociate: { type: GraphQLBoolean },
+    service: { type: ServiceType }
   })
 })
 
