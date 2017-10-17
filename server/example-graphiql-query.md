@@ -68,3 +68,10 @@ mutation addQuestion($text: String, $correctAnswers: [String]!, $answers: [Strin
     sysOpsAssociate
   }
 }
+
+
+
+https://github.com/graphql/graphiql/issues/59
+
+use this chrome extension for token
+https://chrome.google.com/webstore/detail/modheader/idgpnmonknjnojddfkpgkljpfnnfcklj 
