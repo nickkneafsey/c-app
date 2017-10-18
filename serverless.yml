@@ -1,0 +1,53 @@
+# serverless.yml
+service:
+  name: awsApp
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: prod # Set the default stage used. Default is dev
+  region: us-east-1 # Overwrite the default region used. Default is us-east-1
+  environment: # Service wide environment variables
+    NODE_ENV: production
+  usagePlan: # This part doesnt seem to work
+    quota:
+      limit: 5000
+      offset: 2
+      period: MONTH
+    throttle:
+      burstLimit: 200
+      rateLimit: 100
+functions:
+  awsFun:
+    handler: lambda.handler
+    description: graphql server
+    memorySize: 512
+    runtime: nodejs6.10
+    timeout: 10
+    environment: # Function level environment variables
+      NODE_ENV: production
+    events:
+      - http:
+          path: auth
+          method: post
+          cors: true
+          private: false
+      - http:
+          path: env
+          method: get
+          cors: true
+          private: false
+      - http:
+          path: graphql
+          method: post
+          cors: true
+          private: false
+      - http:
+          path: graphql
+          method: get
+          cors: true
+          private: false
+      - http:
+          path: /
+          method: get
+          cors: true
+          private: false
