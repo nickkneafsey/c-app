@@ -12,16 +12,19 @@ const ServiceType = new GraphQLEnumType({
     LAMBDA: { value: 'LAMBDA' },
     VPC: { value: 'VPC' },
     CLOUDFRONT: { value: 'CLOUDFRONT' },
+    CLOUDFORMATION: { value: 'CLOUDFORMATION' },
     ROUTE_53: { value: 'ROUTE_53' },
     GLACIER: { value: 'GLACIER' },
     KINESIS: { value: 'KINESIS' },
     STORAGE_GATEWAY: { value: 'STORAGE_GATEWAY' },
     ECS: { value: 'ECS' },
     ELASTICACHE: { value: 'ELASTICACHE' },
+    ELASTIC_BEANSTALK: { value: 'ELASTIC_BEANSTALK' },
     IAM: { value: 'IAM' },
     SNS: { value: 'SNS' },
     SES: { value: 'SES' },
     STEP_FUNCTIONS: { value: 'STEP_FUNCTIONS' },
+    SWF: { value: 'SWF' },
     API_GATEWAY: { value: 'API_GATEWAY' }
   }
 })
