@@ -22,7 +22,7 @@ const mutation = new GraphQLObjectType({
       },
       resolve (parentValue, { text, correctAnswers, answers, service, developerAssociate, solutionsArchitectAssociate, sysOpsAssociate }, req) {
         const token = req.headers.authorization
-        if (!AuthService.isAdminToken(token)) { throw new Error('Permission Denied')}
+        if (!AuthService.isAdminToken(token)) { throw new Error('Permission Denied') }
         return Question.addQuestion(new Question({ text, correctAnswers, answers, service, developerAssociate, solutionsArchitectAssociate, sysOpsAssociate }))
       }
     }

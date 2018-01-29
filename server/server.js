@@ -4,7 +4,7 @@ const graphqlHTTP = require('express-graphql')
 const mongoose = require('mongoose')
 const schema = require('./schema/schema')
 const bodyParser = require('body-parser')
-const environment = process.env.NODE_ENV || "local"
+const environment = process.env.NODE_ENV || 'local'
 
 const AuthService = require('./services/auth')
 const MONGO_URI = require('./../config').mongoUri
@@ -28,7 +28,7 @@ app.use('/graphql', AuthService.checkToken, graphqlHTTP({
   graphiql: true
 }))
 
-app.get('/env', function(req, res){
+app.get('/env', function (req, res) {
   res.json({ environment })
 })
 
